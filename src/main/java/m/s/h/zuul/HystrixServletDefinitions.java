@@ -17,10 +17,4 @@ public class HystrixServletDefinitions {
         return registration;
     }
 
-    @Bean
-    public Filter filter()
-    {
-        return new Filter();
-    }
-
 }

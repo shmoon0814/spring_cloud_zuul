@@ -1,14 +1,21 @@
 zuul:
   ignored-service: "*"  #routes 에 적혀있는 서비스들을 제외하곤 모두 무시한다
-  prefix: /api  #Zuul 에 의해 routing 되는 모든 service의 Endpoint를 /api~ 로 묶는다
+  #prefix: /api  #Zuul 에 의해 routing 되는 모든 service의 Endpoint를 /api~ 로 묶는다
   routes:
-    spring-cloud-blog_1:
+    spring-cloud-blog:
         path: /blog/**
-        serviceId: spring-cloud-blog_1
+        serviceId: spring-cloud-blog
         stripPrefix: false
+    auth-center:
+      path: /login/**
+      url: http://127.0.0.1:8081/
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: false
   ribbonIsolationStrategy: THREAD  #각각의 서비스르의 쓰레드 풀을 독립적으로 설정하겠다 라는 뜻..
   threadPool:
     useSeparateThreadPools: true
+
+
 
 hystrix:
   command:
@@ -19,7 +26,7 @@ hystrix:
           thread:
             timeoutInMilliseconds: 20000
 
-story-service:
+spring-cloud-blog:
   ribbon:
     eureka:
       enabled: true
@@ -29,8 +36,6 @@ story-service:
 
     MaxTotalHttpConnections: 500
     MaxConnectionsPerHost: 100
-
-
 
 eureka:
   client:
