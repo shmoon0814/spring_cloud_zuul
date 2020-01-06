@@ -2,7 +2,7 @@ package m.s.h.zuul;
 
 import javax.servlet.http.HttpServletResponse;
 
-import m.s.h.common.JwtAuthenticationConfig;import m.s.h.common.JwtTokenAuthenticationFilter;import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,9 +38,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(config.getUrl()).permitAll()
-                .antMatchers("/blog/admin").hasRole("ADMIN")
-                .antMatchers("/blog/user").hasRole("USER")
-                .antMatchers("/blog/guest").permitAll();
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-ui.html/**").permitAll()
+                .antMatchers("/swagger-ui.html/**/*").permitAll()
+                .antMatchers("/swagger-resources/configuration/security").permitAll()
+                .anyRequest().authenticated();
     }
+//    "/swagger-ui.html",
+//            "/api/adviser/client/checkLicenseNumber",
+//            "/webjars/**",
+//            "/swagger/**",
+//            "/swagger-resources",
+//            "/swagger-resources/configuration/security",
+//            "/csrf",
+//            "/swagger-ui.html/swagger-resources/configuration/ui",
+//            "/swagger-ui.html/swagger-resources/configuration/security",
+//            "/swagger-ui.html/swagger-resources",
+//            "/swagger-resources/configuration/ui",
+//            "/v2/api-docs",
 }
 
