@@ -1,6 +1,6 @@
 zuul:
   ignored-service: "*"  #routes 에 적혀있는 서비스들을 제외하곤 모두 무시한다
-  #prefix: /api  #Zuul 에 의해 routing 되는 모든 service의 Endpoint를 /api~ 로 묶는다
+  prefix: /api  #Zuul 에 의해 routing 되는 모든 service의 Endpoint를 /api~ 로 묶는다
   routes:
     spring-cloud-blog:
         path: /blog/**
