@@ -37,6 +37,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                         .parseClaimsJws(token)
                         .getBody();
                 String username = claims.getSubject();
+
                 @SuppressWarnings("unchecked")
                 List<String> authorities = claims.get("authorities", List.class);
                 if (username != null) {
