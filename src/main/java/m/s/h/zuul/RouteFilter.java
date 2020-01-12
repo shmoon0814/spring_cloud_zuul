@@ -28,6 +28,7 @@ public class RouteFilter extends ZuulFilter {
 
         if(SecurityContextHolder.getContext() != null) {
             ctx.addZuulRequestHeader("username", username);
+            ctx.addZuulRequestHeader("user_id", claims.get("user_id").toString());
         }
         return null;
     }
